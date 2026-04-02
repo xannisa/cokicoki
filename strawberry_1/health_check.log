@@ -2,3 +2,7 @@
 [2026-04-02 21:48:06] [SUCCESS] Server is reachable.
 [2026-04-02 21:48:06] [ERROR] Web service on port 21 is DOWN.
 [2026-04-02 21:48:06] Disk Usage (/): 9% used (14Gi/460Gi)
+[2026-04-02 21:59:40] ===== Starting health check for localhost on port 443 =====
+[2026-04-02 21:59:44] [SUCCESS] Server is reachable.
+[2026-04-02 21:59:44] [ERROR] Web service on port 443 is DOWN.
+[2026-04-02 21:59:44] Disk Usage (/): 9% used (14Gi/460Gi)
