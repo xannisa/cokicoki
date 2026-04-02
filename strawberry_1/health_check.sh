@@ -5,13 +5,19 @@ TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
 
 # Function to log messages
 log() {
-    if [ "$1" = "-p" ]; then
-        shift
-        echo "[$TIMESTAMP] $1" >> "$LOG_FILE"
-    else
-        echo "[$TIMESTAMP] $1" >> "$LOG_FILE"
-        echo "$1"
-    fi
+    [ "$#" -eq 0 ] && return
+    [ "$1" = "-p" ] && p=false && shift || p=true
+
+    case "$1" in
+        SUCCESS) c='\033[0;32m'; lvl="$1"; shift ;;
+        ERROR)   c='\033[0;31m'; lvl="$1"; shift ;;
+        *)       c='\033[0m'; lvl="" ;;
+    esac
+
+    msg="$*"
+
+    echo "[$(date '+%F %T')] ${lvl:+[$lvl] }$msg" >> "$LOG_FILE"
+    $p && echo -e "${c}${lvl:+[$lvl] }$msg\033[0m"
 }
 
 # Check if argument is provided
@@ -33,9 +39,9 @@ log -p "===== Starting health check for $SERVER on port $PORT ====="
 # Ping Check 5 times (normal counter) if all get success then log Server reachable
 if ping -c 5 "$SERVER" &> /dev/null
 then
-  log "Success : Server reachable."
+  log SUCCESS "Server is reachable."
 else
-  log "Server unreachable."
+  log ERROR "Server is unreachable."
 fi
 
 # 2. HTTP/S Check only 2xx and 3xx that classify as healthy. 5 times checking.
@@ -45,9 +51,9 @@ HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 "http:/
 HTTPS_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 "https://$SERVER:$PORT")
 
 if [[ "$HTTP_STATUS || $HTTPS_STATUS" =~ ^2|3 ]]; then
-    log "Web service on port $PORT is UP."
+    log SUCCESS "Web service on port $PORT is UP."
 else
-    log "Web service on port $PORT is DOWN."
+    log ERROR "Web service on port $PORT is DOWN."
 fi
 
 # 3. Disk Usage
