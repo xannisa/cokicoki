@@ -4,38 +4,24 @@ provider "google" {
   zone    = var.zone
 }
 
-resource "google_compute_instance" "vm" {
-  name         = "opentofu-vm"
-  machine_type = "e2-micro"
-
-  boot_disk {
-    initialize_params {
-      image = "debian-cloud/debian-11"
-    }
-  }
-
-  network_interface {
-    network = "default"
-
-    access_config {}
-  }
-
-  metadata_startup_script = file("startup.sh")
+module "network" {
+  source       = "./modules/network"
+  network_name = "opentofu-network"
+  my_ip        = var.my_ip
 }
 
-resource "google_compute_firewall" "allow_traffic" {
-  name    = "allow"
-  network = "default"
+module "compute" {
+  source = "./modules/vm-template"
 
-  allow {
-    protocol = "tcp"
-    ports    = ["80"]
-  }
+  machine_type   = "e2-micro"
+  image          = "debian-cloud/debian-11"
+  network        = module.network.network_name
+  startup_script = "startup.sh"
+  instance_count = 1
+}
 
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
+module "loadbalancer" {
+  source = "./modules/loadbalancer"
 
-  source_ranges = ["0.0.0.0/0"]
+  instance_group = module.compute.instance_group
 }

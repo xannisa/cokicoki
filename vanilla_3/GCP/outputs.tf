@@ -1,3 +1,14 @@
-output "vm_public_ip" {
-  value = google_compute_instance.vm.network_interface[0].access_config[0].nat_ip
+output "load_balancer_ip" {
+  description = "Public IP of the HTTP Load Balancer"
+  value       = module.loadbalancer.lb_ip
+}
+
+output "instance_group" {
+  description = "Managed Instance Group"
+  value       = module.compute.instance_group
+}
+
+output "network_name" {
+  description = "VPC Network Name"
+  value       = module.network.network_name
 }
