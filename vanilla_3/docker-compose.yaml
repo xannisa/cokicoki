@@ -6,7 +6,7 @@ services:
 
     volumes:
       - ./GCP:/workspace
-      - ./.env:/root/.config/gcloud   # ✅ use your local config folder
+      - ./.env:/root/.config/gcloud   # gitignore
       - ~/.ssh:/root/.ssh
 
     environment:
