@@ -10,7 +10,7 @@ module "network" {
   my_ip        = var.my_ip
 }
 
-module "compute" {
+module "vm-template" {
   source = "./modules/vm-template"
 
   machine_type   = "e2-micro"
@@ -23,5 +23,13 @@ module "compute" {
 module "loadbalancer" {
   source = "./modules/loadbalancer"
 
-  instance_group = module.compute.instance_group
+  instance_group = module.vm-template.instance_group
+}
+
+module "compute" {
+    source = "./modules/compute"
+    standalone-vm-name = "opentofu-standalone-vm"
+    network        = module.network
+    startup_script = "startup.sh"
+
 }

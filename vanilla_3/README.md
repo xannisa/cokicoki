@@ -6,7 +6,7 @@
     ├── network/
     │   ├── main.tf
     │   └── variables.tf
-    ├── compute/
+    ├── vm-template/
     │   ├── main.tf
     │   ├── variables.tf
     │   └── outputs.tf

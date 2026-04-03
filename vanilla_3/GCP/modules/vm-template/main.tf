@@ -17,7 +17,7 @@ resource "google_compute_instance_template" "template" {
 }
 
 resource "google_compute_instance_group_manager" "mig" {
-  name               = "vm-group"
+  name               = "opentofu-vm-group"
   base_instance_name = "vm"
 
   version {

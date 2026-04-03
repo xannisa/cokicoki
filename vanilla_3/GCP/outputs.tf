@@ -4,11 +4,11 @@ output "load_balancer_ip" {
 }
 
 output "instance_group" {
-  description = "Managed Instance Group"
-  value       = module.compute.instance_group
+  description = "Managed Instance Group Name"
+  value       = module.vm-template.instance_group
 }
 
-output "network_name" {
-  description = "VPC Network Name"
-  value       = module.network.network_name
+output "standalone_vm_public_ip" {
+  description = "IP Public of Provisioned Standalone VM"
+  value = module.compute.standalone_vm_public_ip
 }
