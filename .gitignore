@@ -4,11 +4,12 @@
 .terraform
 .terraform.*
 config/*
+terraform.*
 
 # API keys / secrets
 secrets.json
 config/private.key
-.cred/opentofu-cred.json
+.env/opentofu-cred.json
 
 # Node modules (example)
 
