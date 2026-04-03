@@ -1,0 +1,20 @@
+# Environment variables
+.env
+.env.*
+.terraform
+.terraform.*
+config/*
+
+# API keys / secrets
+secrets.json
+config/private.key
+.cred/opentofu-cred.json
+
+# Node modules (example)
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

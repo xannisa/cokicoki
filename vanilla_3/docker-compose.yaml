@@ -6,7 +6,7 @@ services:
 
     volumes:
       - ./GCP:/workspace
-      - ./.cred:/root/.config/gcloud   # ✅ use your local config folder
+      - ./.env:/root/.config/gcloud   # ✅ use your local config folder
       - ~/.ssh:/root/.ssh
 
     environment:
