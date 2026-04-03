@@ -40,32 +40,51 @@ If it doesnt run, change the file to executeable by using :
 chmod +x health_check.sh
 ```
 
-##  Task 1: Chocholate_2
+# 🍫 Task 2: Chocolate_2
 
-**Description:**  
-Simple Next.js app in Docker
+Chocolate_2 is a simple **Next.js** application running in **Docker**.
 
-- Dockerfile uses multistage to ...
-- The apps expose port 3000. The dockerfile create container image only with necessary files and builded package.
-- healthchecks is added in image container to ensure the service healthy
-- add nginx as a proxy to forward port 80 and make it more secure.
+---
 
-**How to Run:**  
-Ensure you have docker running on your laptop!!
+## 🌟 Description
 
-Locate your working dir is in chocholate_2 folder then open the terminal, and execute
+- The **Dockerfile** uses a **multi-stage build** to produce a lightweight production image containing only the necessary files and the built app package.  
+- The app exposes **port 3000** inside the container.  
+- A **health check** is added to the container image to ensure the service is healthy and running.  
+- **Nginx** is configured as a reverse proxy to forward **port 80**, improving security and production readiness.
+
+---
+
+## 🚀 How It Works
+
+1. **Build Stage:**  
+   - Installs dependencies  
+   - Builds the Next.js application  
+
+2. **Production Stage:**  
+   - Copies only the necessary build artifacts  
+   - Sets up Nginx as a reverse proxy  
+   - Exposes port 80 for external access  
+
+3. **Health Check:**  
+   - Periodically checks the app inside the container to ensure it responds correctly  
+
+---
+
+## ⚡ Quick Start
 
 ```bash
-docker compose up
+# Build the Docker image
+docker build -t chocolate_2 .
+
+# Run the container
+docker run -p 80:80 chocolate_2
+
+# Access in browser
+http://localhost
 ```
 
-then, if want to kill the service use :
-
-```bash
-docker compose down
-```
-
-##  Task 3: Vanilla_3
+##  🍪 Task 3: Vanilla_3
 
 **Description:**  
 Provision a simple web server using OpenTofu to GCP
