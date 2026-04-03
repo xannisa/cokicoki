@@ -104,78 +104,70 @@ But, for this one, DONT FORGET TO CREATE SERVICE ACCOUNT IN GCP by follow this b
 
 
 
-🚀 Vanilla_3: GCP Web Server Provisioning
-This project automates the deployment of two distinct web server setups on Google Cloud Platform:
+🍪 Task 3: Vanilla_3</summary>
 
-High Availability: An Instance Group seated behind an HTTP Load Balancer.
+### Provisioning Options
 
-Standalone: A single Compute Engine VM for simple hosting.
+| Option             | Description                                     |
+|-------------------|-------------------------------------------------|
+| **Instance Group** | Server behind an HTTP Load Balancer            |
+| **Standalone VM**  | Single VM instance accessible via public IP    |
 
-📋 Prerequisites
+**Notes:**  
+- SSH access is restricted to your **public IP**; enter it correctly when prompted  
+- Using a VPN is recommended if your IP changes frequently  
+- After provisioning, you will receive:  
+  - **Load Balancer IP** (instance group)  
+  - **Standalone VM Public IP**  
 
-Docker & Docker Compose: Must be installed and running on your machine.
+---
 
-GCP Account: An active project with billing enabled.
+## Prerequisites
+- [Docker](https://www.docker.com/) installed and running  
+- **GCP Service Account** with required permissions  
+  - Download JSON key for OpenTofu authentication  
 
-Your Public IP: You will need this to configure the SSH firewall rule during the apply phase.
+---
 
-🔐 Step 1: Service Account Setup (GCP)
+## Setup Instructions
 
-Before running the code, you must create a Service Account to allow OpenTofu to manage resources.
+### 1️⃣ Create GCP Service Account
+Follow GCP instructions to create a service account and download its JSON key. This will be used by OpenTofu to authenticate.
 
-Go to IAM & Admin > Service Accounts in the GCP Console.
+---
 
-Click Create Service Account.
+### 2️⃣ Run OpenTofu in Docker
+Open a terminal in the `vanilla_3` folder:
 
-Assign the following roles (for least privilege, use specific roles, but for this task, these are common):
-
-Compute Admin
-
-Network Admin
-
-Once created, go to the Keys tab of the service account.
-
-Click Add Key > Create New Key and select JSON.
-
-Save this file inside your vanilla_3 folder and rename it to credentials.json (or ensure your .tf files point to the correct filename).
-
-🛠️ Step 2: Deployment
-
-Open your terminal in the vanilla_3 directory and follow these steps:
-
-1. Verify Installation
-
-Ensure the Docker container and OpenTofu are ready.
-
-Bash
+**Check OpenTofu version**
+```bash
 docker-compose run --rm tofu version
-2. Initialize OpenTofu
-
-Download the necessary GCP providers and initialize the backend.
-
-Bash
+```
+Initialize OpenTofu
+```bash
 docker-compose run --rm tofu init
-3. Apply Configuration
-
-Deploy the infrastructure. Note: You will be prompted to input your Public IP for the SSH firewall rule.
-
-Bash
+```
+Apply configuration
+```bash
 docker-compose run --rm tofu apply
-[!IMPORTANT]
+```
+⚠️ Make sure to fill in the prompts correctly, especially your public IP for SSH access.
+3️⃣ Destroy Resources
 
-When prompted for your IP, provide it in CIDR notation (e.g., 203.0.113.5/32).
-
-🖥️ Step 3: Accessing the Servers
-
-Once the process finishes, the terminal will output the following IP addresses. Copy and paste them into your browser to verify:
-
-Load Balancer IP: http://<LB_IP_ADDRESS>
-
-Standalone VM IP: http://<VM_IP_ADDRESS>
-
-🗑️ Step 4: Cleanup
-
-To avoid incurring unnecessary costs on your GCP account, destroy the resources when you are finished:
-
-Bash
+```bash
 docker-compose run --rm tofu destroy
+```
+Outputs
+
+Resource Type	Access Method
+Load Balancer IP	Open in browser (instance group)
+Standalone VM IP	Open in browser (direct VM access)
+Tips
+Ensure Docker is running before executing commands
+Double-check your public IP to avoid SSH lockout
+VPN can simplify configuration if your IP changes
+</details> ```
+✅ Just copy all of that into README.md in VS Code — it’s ready to render beautifully on GitHub with collapsible task details, tables, badges, and clear instructions.
+If you want, I can make a version with colorful terminal command boxes and Docker/OpenTofu icons so it looks super “GitHub professional” with minimal effort.
+
+Do you want me to do that next?
