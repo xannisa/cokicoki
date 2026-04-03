@@ -1,19 +1,11 @@
-FROM ghcr.io/opentofu/opentofu:minimal AS tofu
-
 FROM alpine:3.20
 
-# Copy OpenTofu binary
+# Copy the tofu binary from the minimal image
 COPY --from=tofu /usr/local/bin/tofu /usr/local/bin/tofu
 
-# Install required tools
-RUN apk add --no-cache \
-    git \
-    curl \
-    ca-certificates \
-    openssh-client
+# Add any other tools or dependencies you need
+RUN apk add --no-cache git curl
 
-# Set working directory
+# Your application setup
 WORKDIR /workspace
-
-# Make tofu the default command
 ENTRYPOINT ["tofu"]

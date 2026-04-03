@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   tofu:
     build: .
@@ -7,12 +5,13 @@ services:
     working_dir: /workspace
 
     volumes:
-      - ./:/workspace
-      - ~/.oci:/root/.oci
+      - ./GCP:/workspace
+      - ./.cred:/root/.config/gcloud   # ✅ use your local config folder
       - ~/.ssh:/root/.ssh
 
     environment:
       - TF_LOG=INFO
+      - GOOGLE_APPLICATION_CREDENTIALS=/root/.config/gcloud/opentofu-cred.json
 
     stdin_open: true
     tty: true
