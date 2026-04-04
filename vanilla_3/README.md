@@ -66,7 +66,8 @@ Follow GCP instructions (https://docs.cloud.google.com/iam/docs/service-accounts
 **Important** 
 Set the Role only : COMPUTE INSTANCE ADMIN (V1), COMPUTE NETWORK ADMIN, COMPUTE SECURITY ADMIN. To limit access and ensure security matters.
 
-After create, then download the key and locate to vanilla_3/.env/opentofu-cred.json.
+After create, 
+Then download the key and locate to **vanilla_3/.env/opentofu-cred.json.**
 
 #### 2 Enable API Compute Engine
 Enable API for compute engine (https://docs.cloud.google.com/endpoints/docs/openapi/enable-api). This feature is not free tier, so becarefull.
@@ -95,14 +96,32 @@ docker-compose run --rm tofu version
 ```bash
 docker-compose run --rm tofu init
 ```
+
+**Plan the configuration**
+```bash
+docker-compose run --rm tofu plan
+```
+Read and see what the resource to be added, modified or destroy based on the .tf file config.
+
 **Apply configuration**
 ```bash
 docker-compose run --rm tofu apply
 ```
 ⚠️ Make sure to fill in the prompts correctly, especially your public IP for SSH access.
 
+**Access the Public IP**
+You will get :
+  - Load Balancer IP (instance group)  
+  - Standalone VM Public IP
+
+Access both through browser.
+
 **Destroy Resources**
 
 ```bash
 docker-compose run --rm tofu destroy
 ```
+
+Or you can edit the main.tf file if you want to delete specific resources.
+
+
