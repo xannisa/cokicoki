@@ -92,16 +92,17 @@ Locate user in the `vanilla_3` folder:
 ```bash
 docker-compose run --rm tofu version
 ```
-Initialize OpenTofu
+**Initialize OpenTofu**
 ```bash
 docker-compose run --rm tofu init
 ```
-Apply configuration
+**Apply configuration**
 ```bash
 docker-compose run --rm tofu apply
 ```
 ⚠️ Make sure to fill in the prompts correctly, especially your public IP for SSH access.
-3️⃣ Destroy Resources
+
+**Destroy Resources**
 
 ```bash
 docker-compose run --rm tofu destroy

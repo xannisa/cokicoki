@@ -110,7 +110,7 @@ docker service ls | grep <name>
 
 After all replicas ready. Then access localhost through browser or use healthcheck.sh on strawberry_1.
 
-To remore the running stack, use this command :
+To remove the running stack, use this command :
 
 ```bash
 docker stack rm <name>
