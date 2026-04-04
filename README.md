@@ -276,6 +276,13 @@ docker-compose run --rm tofu version
 ```bash
 docker-compose run --rm tofu init
 ```
+
+**Plan the configuration**
+```bash
+docker-compose run --rm tofu plan
+```
+Read and see what the resource to be added, modified or destroy based on the .tf file config.
+
 **Apply configuration**
 ```bash
 docker-compose run --rm tofu apply
@@ -294,5 +301,7 @@ Access both through browser.
 ```bash
 docker-compose run --rm tofu destroy
 ```
+
+Or you can edit the main.tf file if you want to delete specific resources.
 
 
