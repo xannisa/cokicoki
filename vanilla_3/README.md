@@ -116,6 +116,13 @@ You will get :
   - Load Balancer IP (instance group)  
   - Standalone VM Public IP
 
+Example :
+
+```bash
+load_balancer_ip = "35.241.2.54"
+standalone_vm_public_ip = "34.21.190.147"
+```
+
 Access both through browser.
 
 **Destroy Resources**

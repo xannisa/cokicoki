@@ -202,7 +202,7 @@ This setup uses OpenTofu inside a Docker container to provision and manage infra
 
 In GCP folder, there are modules and files in GCP root folder to easily manage if the module is getting bigger. Inside module, will define the resource based on our needs. Those only compute, loadbalancer, network and vm-template. There is startup.sh as well to configure the vm instance in the initial run. In GCP root folder, there is variables.tf file to input propmt during the creating resource execution.
 
-The architecture provide both instance group and standalone vm server. Its basically based on the author preference. The instance group use Loadbalancer so the traffic can distribute to the instance group and make server is not exposed directly to the internet. The standalone server uses ip public directly. The author define variable "my_ip" in GCP variables.tf file to protect the inbound IP only from user IP. But it didnt works as planned :3. So the author put 0.0.0.0/0.
+The architecture on GCP provide both instance group and standalone vm server. Its basically based on the author preference. The instance group use Loadbalancer so the traffic can distribute to the instance group and make server is not exposed directly to the internet. The standalone server uses ip public directly. The author define variable "my_ip" in GCP variables.tf file to protect the inbound IP only from user IP. But it didnt works as planned :3. So the author put 0.0.0.0/0.
 
 ---
 
@@ -295,6 +295,13 @@ docker-compose run --rm tofu apply
 You will get :
   - Load Balancer IP (instance group)  
   - Standalone VM Public IP
+
+Example :
+
+```bash
+load_balancer_ip = "35.241.2.54"
+standalone_vm_public_ip = "34.21.190.147"
+```
 
 Access both through browser.
 
