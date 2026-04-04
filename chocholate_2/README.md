@@ -84,7 +84,10 @@ This architecture improves security, scalability, and reliability by isolating t
 
 ## 🚀 Getting Started
 
-Locate user to chocolate_2 folder.
+## Prerequisites
+- [Docker](https://www.docker.com/) installed and running.
+
+Locate user to chocholate_2 folder.
 
 ### 1. Build the Docker Image
 
