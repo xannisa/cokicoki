@@ -1,4 +1,4 @@
-🍪 Task 3: Vanilla_3
+## 🍪 Task 3: Vanilla_3
 
 ### Provisioning Options (not an option, it deploy both :v)
 
@@ -16,15 +16,15 @@
 
 ---
 
-## 🌟 Description
+### 🌟 Description
 
-This setup uses OpenTofu inside a Docker container to provision and manage infrastructure on Google Cloud Platform (GCP). The Docker Compose service encapsulates the OpenTofu environment, ensuring consistent execution across different machines.Infrastructure code is mounted from the local GCP/ directory into the container workspace, enabling seamless development and deployment. Secure authentication is handled via Google Cloud service account credentials, mounted into the container and referenced using environment variables. SSH keys are also mounted to enable secure access to provisioned virtual machines.
+This setup uses OpenTofu inside a Docker container to provision and manage infrastructure on Google Cloud Platform (GCP). The Docker Compose service encapsulates the OpenTofu environment, ensuring consistent execution across different machines.Infrastructure code is mounted from the local GCP/ directory into the container workspace, enabling seamless development and deployment. Secure authentication is handled via Google Cloud service account credentials, mounted into the container and referenced using environment variables. SSH keys are also mounted to enable secure access to provisioned virtual machines. OpenTofu in Docker Compose set up is easily to addapt to use third party CI/CD or create CI/CD on separate machine.
 
-In GCP folder, there are modules and files in GCP root folder. Inside module, will define the resource based on our needs. Those only compute, loadbalancer, network and vm-template. There is startup.sh as well to configure the vm instance in the initial run. In GCP root folder, there is variables.tf file to input propmt during the creating resource execution.
+In GCP folder, there are modules and files in GCP root folder to easily manage if the module is getting bigger. Inside module, will define the resource based on our needs. Those only compute, loadbalancer, network and vm-template. There is startup.sh as well to configure the vm instance in the initial run. In GCP root folder, there is variables.tf file to input propmt during the creating resource execution.
 
 ---
 
-## 📁 Project Structure
+### 📁 Project Structure
 
 .
 ├── main.tf
@@ -49,18 +49,18 @@ In GCP folder, there are modules and files in GCP root folder. Inside module, wi
 
 ---
 
-## Prerequisites
+### Prerequisites
 - [Docker](https://www.docker.com/) installed and running  
 - **GCP Service Account** with required permissions  
   - Download JSON key for OpenTofu authentication  
 
 ---
 
-## Setup Instructions
+### Setup Instructions
 
 This will be used by OpenTofu to authenticate.
 
-### 1 Create GCP Service Account
+#### 1 Create GCP Service Account
 Follow GCP instructions (https://docs.cloud.google.com/iam/docs/service-accounts-create) to create a service account.
 
 **Important** 
@@ -68,10 +68,10 @@ Set the Role only : COMPUTE INSTANCE ADMIN (V1), COMPUTE NETWORK ADMIN, COMPUTE 
 
 After create, then download the key and locate to vanilla_3/.env/opentofu-cred.json.
 
-### 2 Enable API Compute Engine
+#### 2 Enable API Compute Engine
 Enable API for compute engine (https://docs.cloud.google.com/endpoints/docs/openapi/enable-api). This feature is not free tier, so becarefull.
 
-### 2 Setup Project_id from GCP into variables.tf inside GCP folder.
+#### 3 Setup Project_id from GCP into variables.tf inside GCP folder.
 
 copy user project id into variables.tf inside GCP folder.
 
@@ -83,8 +83,7 @@ variable "project_id" {
 ```
 
 ---
-
-### 2️⃣ Run OpenTofu in Docker
+### 🚀 Getting Started to Run OpenTofu in Docker
 
 Locate user in the `vanilla_3` folder:
 

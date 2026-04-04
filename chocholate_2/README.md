@@ -1,10 +1,10 @@
-# 🍫 Task 2: Chocholate_2
+## 🍫 Task 2: Chocholate_2
 
 Chocholate_2 is a simple **Next.js** application running in **Docker**.
 
 ---
 
-## 🌟 Description
+### 🌟 Description
 🌟 Description
 
 1. The Dockerfile uses a multi-stage build to create a lightweight, production-ready image containing only the compiled Next.js application and required dependencies.
@@ -16,7 +16,7 @@ Chocholate_2 is a simple **Next.js** application running in **Docker**.
 
 ---
 
-## 🚀 How It Works
+### 🚀 How It Works
 
 1. Build Stage (Dockerfile)
 Installs dependencies using npm install. Builds the next-app-js app using npm run build. Then, uses multi-stage build to reduce final image size.
@@ -67,7 +67,7 @@ This architecture improves security, scalability, and reliability by isolating t
 
 ---
 
-## 📁 Project Structure
+### 📁 Project Structure
 
 .
 ├── app/
@@ -82,20 +82,20 @@ This architecture improves security, scalability, and reliability by isolating t
 
 ---
 
-## 🚀 Getting Started
+### 🚀 Getting Started
 
-## Prerequisites
+#### Prerequisites
 - [Docker](https://www.docker.com/) installed and running.
 
 Locate user to chocholate_2 folder.
 
-### 1. Build the Docker Image
+#### 1. Build the Docker Image
 
 ```bash
 docker build -t next-app-js:latest .
 ```
 
-### 2. Start Docker Swarn
+#### 2. Start Docker Swarn
 
 ```bash
 docker stack deploy -c docker-compose.yaml <name>
@@ -103,12 +103,17 @@ docker stack deploy -c docker-compose.yaml <name>
 
 Replace <name> with any-name.
 Wait for sometime until all replica is ready.
+
+#### 3. Debugging 
+
 For check, use this command :
 ```bash
 docker service ls | grep <name>
 ```
 
 After all replicas ready. Then access localhost through browser or use healthcheck.sh on strawberry_1.
+
+#### 4. Remove and Kill Docker
 
 To remove the running stack, use this command :
 

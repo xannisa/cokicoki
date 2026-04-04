@@ -48,6 +48,8 @@ chmod +x health_check.sh
 
 It will produce health_checks.log file in the same directory. 
 
+---
+
 ## 🍫 Task 2: Chocholate_2
 
 Chocholate_2 is a simple **Next.js** application running in **Docker**.
@@ -170,7 +172,7 @@ To remove the running stack, use this command :
 ```bash
 docker stack rm <name>
 ```
-
+---
 
 ## 🍪 Task 3: Vanilla_3
 
