@@ -6,8 +6,8 @@
 Performs a basic server health check, including:
 
 - **Ping** – 5 attempts to check connectivity  
-- **Curl** – 5 HTTP requests to check response  
-- **Disk Usage** – checks available disk space  
+- **Curl** – HTTP/S request to check web response. Only result for 2xx and 3xx is classified for healthy. 
+- **Disk Usage** – Checks available disk space  
 
 **How to Run:**  
 From the terminal in the strawberry_1 directory, run the script using this command :
