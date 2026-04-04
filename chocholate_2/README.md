@@ -1,6 +1,6 @@
-# 🍫 Task 2: Chocolate_2
+# 🍫 Task 2: Chocholate_2
 
-Chocolate_2 is a simple **Next.js** application running in **Docker**.
+Chocholate_2 is a simple **Next.js** application running in **Docker**.
 
 ---
 
@@ -110,5 +110,5 @@ After all replicas ready. Then access localhost through browser or use healthche
 To remore the running stack, use this command :
 
 ```bash
-docker stack rm coklat
+docker stack rm <name>
 ```
