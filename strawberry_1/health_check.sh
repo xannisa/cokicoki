@@ -7,6 +7,7 @@ log() {
     [ "$#" -eq 0 ] && return
     [ "$1" = "-p" ] && p=false && shift || p=true
 
+    # Create different color for log status (only in console)
     case "$1" in
         SUCCESS) c='\033[0;32m'; lvl="$1"; shift ;;
         ERROR)   c='\033[0;31m'; lvl="$1"; shift ;;
@@ -20,6 +21,7 @@ log() {
 }
 
 # ---------- Validation ----------
+# Ensure the script call is in the proper condition. And the port is only number format
 validate_input() {
     if [ -z "$1" ]; then
         echo "Usage: $0 <server_ip_or_hostname> [port]"
@@ -33,6 +35,7 @@ validate_input() {
 }
 
 # ---------- Ping Check ----------
+# Ping checks 5 attempts. Why? cz its the minimum standard. Need all attempts success then classify as server is reachable.
 check_ping() {
     if ping -c 5 "$SERVER" &> /dev/null; then
         log SUCCESS "Server is reachable."
@@ -42,6 +45,7 @@ check_ping() {
 }
 
 # ---------- HTTP/HTTPS Check ----------
+# Curl checks result for 2xx and 3xx is classified for healthy. 
 check_http() {
     HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 "http://$SERVER:$PORT")
     HTTPS_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 "https://$SERVER:$PORT")
@@ -54,12 +58,14 @@ check_http() {
 }
 
 # ---------- Disk Check ----------
+# Disk space available on current server (not the others server or IP)
 check_disk() {
     DISK_USAGE=$(df -h / | awk 'NR==2 {print $5 " used (" $3 "/" $2 ")"}')
     log "Disk Usage (/): $DISK_USAGE"
 }
 
 # ---------- Main ----------
+# Call the all functions
 SERVER="$1"
 PORT="${2:-80}"
 
